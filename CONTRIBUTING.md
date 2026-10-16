@@ -77,6 +77,7 @@ New features and bug fixes should come with tests. A bug fix should include a te
 - Describe what changes and why, and how you tested it.
 - Add screenshots for visual changes (a phone screenshot is best).
 - Keep pull requests small. Several small ones are easier to review than a large one.
+- Once a pull request is ready, a maintainer can comment `@claude review` to get an automated review from Claude, posted as inline comments. Its rules are in [REVIEW.md](REVIEW.md). It complements the maintainer's review and doesn't replace it.
 
 ## License
 

@@ -152,6 +152,8 @@ src/
 ├── styles/       # CSS design tokens
 └── types/        # API types
 e2e/              # Playwright tests and mock backend
+.github/workflows/ # CI, PR title check, on-demand Claude review (claude-review.yml)
+REVIEW.md         # Rules for the automated Claude review
 ```
 
 ---
@@ -178,6 +180,16 @@ No CORS configuration is required on the backend — all browser requests stay o
 Contributions are welcome! Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started. Pull requests target `develop`.
 
 To report a security issue, follow [SECURITY.md](SECURITY.md) — please don't open a public issue.
+
+### Automated code review
+
+Once a pull request is ready, a maintainer can comment `@claude review` (as a top-level comment) to get a review from Claude, posted as inline comments with a summary. It complements the maintainer's review and doesn't replace it.
+
+- **Workflow:** [`.github/workflows/claude-review.yml`](.github/workflows/claude-review.yml), running [`anthropics/claude-code-action`](https://github.com/anthropics/claude-code-action) with the official `code-review` plugin and the `claude-opus-5-5` model.
+- **Rules:** [REVIEW.md](REVIEW.md) sets what counts as blocking, what to skip and what to always check.
+- **Who can trigger it:** only people with write access to the repository. Nothing runs automatically on open or push.
+- **Skipped:** draft pull requests, and pull requests that already have a comment from Claude.
+- **Credentials:** the `CLAUDE_CODE_OAUTH_TOKEN` repository secret, a Claude Pro subscription token generated with `claude setup-token`. Reviews count against that subscription's usage limits. The token is currently provided by Christian: if reviews stop working, or if the token needs to be replaced, contact him.
 
 ---
 
